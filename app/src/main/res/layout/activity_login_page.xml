@@ -127,7 +127,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/lineleft"
             app:layout_constraintTop_toBottomOf="@+id/passwd"
-            android:onClick="openMain"/>
+            android:onClick="logIn"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/linercenteright"
@@ -168,7 +168,8 @@
             app:layout_constraintHorizontal_bias="0.961"
             app:layout_constraintStart_toStartOf="@+id/linercenteright"
             app:layout_constraintTop_toBottomOf="@+id/passwd"
-            style="@style/buttonoutlined"/>
+            style="@style/buttonoutlined"
+            android:onClick="toGoogle"/>
 
         <TextView
             android:id="@+id/textView2"

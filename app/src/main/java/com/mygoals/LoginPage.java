@@ -31,7 +31,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginPage extends AppCompatActivity {
-    private static final int RC_SIGN_IN = 2;
     Button b_google;
     Button login;
     TextInputEditText passwd;
@@ -39,8 +38,6 @@ public class LoginPage extends AppCompatActivity {
     TextInputLayout tipasswd;
     TextInputEditText email;
     private FirebaseAuth mAuth;
-    private static final int REQ_ONE_TAP = 2;
-    private boolean showOneTapUI = true;
     private String TAG;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -63,39 +60,19 @@ public class LoginPage extends AppCompatActivity {
 
 
         gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("506720631692-qtno7lqcft4beh2c8i8f5jsuqu3mp4ni.apps.googleusercontent.com")
+                .requestIdToken("506720631692-r37hguq2v0mla66fnudpcht1aqjfcgj1.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
         gsc=GoogleSignIn.getClient(this,gso);
 
-        b_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toGoogle();
-            }
-        });
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logIn();
-            }
-
-        });
-
-        forgor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ToForgor();
-            }
-        });
-
+        gsc.signOut();
 
 
     }
 
 
-    private void logIn() {
+    public void logIn(View v) {
         String vemail=email.getText().toString().trim();
         String vpassword=passwd.getText().toString().trim();
         if(TextUtils.isEmpty(vpassword) ){
@@ -132,7 +109,7 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    public void toGoogle(){
+    public void toGoogle(View v){
 
         Intent intg=gsc.getSignInIntent();
         startActivityForResult(intg,100);
@@ -166,15 +143,8 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
-    private void HomeActivity() {
-        finish();
-        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
-    }
-    private void ToForgor(){
-        Intent intent=new Intent(getApplicationContext(),Forgot.class);
-        startActivity(intent);
-    }
+
+
 
     @Override
     public void onStart() {
