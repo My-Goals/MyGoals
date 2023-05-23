@@ -7,31 +7,17 @@
     tools:context="com.mygoals.MainActivity"
     >
 
-<!--        <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@color/transparent"-->
-<!--            android:theme="@style/Theme.GreenGenie"-->
-<!--            >-->
-
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/title"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:minHeight="?actionBarSize"-->
-<!--                android:padding="@dimen/appbar_padding"-->
-<!--                android:text="@string/app_name"-->
-<!--                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />-->
-
-<!--            <com.google.android.material.tabs.TabLayout-->
-<!--                android:id="@+id/tabs"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:visibility="gone" />-->
-<!--        </com.google.android.material.appbar.AppBarLayout>-->
+    <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="5dp"
+        android:gravity="bottom"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></androidx.appcompat.widget.Toolbar>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
@@ -48,19 +34,5 @@
 
 
             />
-
-        <!--        android:foregroundTint="@color/bottomselector"-->
-        <!--    style="@style/BottomNavigation"-->
-
-        <!--        android:foregroundTint="@color/bottomselector"-->
-
-        <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-        <!--        android:id="@+id/fab"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_gravity="bottom|end"-->
-        <!--        android:layout_marginEnd="@dimen/fab_margin"-->
-        <!--        android:layout_marginBottom="16dp"-->
-        <!--        app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
