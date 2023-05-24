@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,8 +32,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mygoals.LoginPage;
+import com.mygoals.News;
+import com.mygoals.NewsAdapter;
+import com.mygoals.NewsFeed;
 import com.mygoals.R;
 import com.mygoals.ui.main.PageViewModel;
+
+import java.util.ArrayList;
 
 
 public class Page1 extends Fragment {
@@ -46,6 +54,13 @@ public class Page1 extends Fragment {
     private String mParam2;
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private RecyclerView recyclerView;
+    private ArrayList<News> data;
+    private NewsAdapter newsAdapter;
+
+    public ArrayList<News> getData() {
+        return data;
+    }
 
     public Page1() {
         // Required empty public constructor
@@ -80,28 +95,25 @@ public class Page1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_page1, container, false);
-        Button button = view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logOut();
-            }
-        });
+        recyclerView = view.findViewById(R.id.recycler);
+        data= new ArrayList<News>();
+     for (int x=0;x<=3;x++){
+        NewsFeed.getData(this);}
+         newsAdapter = new NewsAdapter(data);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(newsAdapter);
+
+
         return view;
     }
 
-    public void logOut() {
-
-                    FirebaseAuth.getInstance().signOut();
-                    Intent login_intent = new Intent(getActivity(), LoginPage.class);
-                    login_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); // clear previous task (optional)
-                    startActivity(login_intent);
 
 
-    }
+public void addNews(News news){
+        data.add(news);
+    newsAdapter.notifyItemInserted(data.size() - 1);
 
-
+}
 }
 
