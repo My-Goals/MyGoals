@@ -140,7 +140,7 @@ private NavigationView navview;
             }
         });
     }
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_nav,menu);
         return true;
@@ -160,7 +160,7 @@ logOut();
         }
 
         return false;
-    }
+    }*/
 
 
 
