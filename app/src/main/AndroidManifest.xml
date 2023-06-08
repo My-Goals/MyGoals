@@ -66,6 +66,13 @@
             <!--                            <category android:name="android.intent.category.LAUNCHER" />-->
             <!--                        </intent-filter>-->
         </activity>
+        <activity
+            android:name=".InformacionActivity"
+            android:label="Información">
+
+            <!-- Actividad de información -->
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El índice de grasa corporal (IGC) es una medida utilizada para evaluar la cantidad de grasa que una persona tiene en su cuerpo en relación con su peso total. Hay varios métodos para calcular el IGC, y uno de los más comunes es el índice de masa corporal (IMC), que se calcula dividiendo el peso en kilogramos entre el cuadrado de la altura en metros."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El IMC es una medida útil para evaluar la grasa corporal en la mayoría de las personas, pero no tiene en cuenta la distribución de la grasa en el cuerpo. Otras técnicas más precisas, como la bioimpedancia, la medición de pliegues cutáneos o la densitometría de doble energía (DEXA), pueden proporcionar resultados más precisos al tener en cuenta factores como la edad, el sexo y la composición corporal."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="La bioimpedancia es un método común para calcular el IGC. Se basa en la medición de la resistencia eléctrica del cuerpo, ya que la grasa corporal ofrece más resistencia al paso de la corriente eléctrica que otros tejidos. Se colocan electrodos en diferentes partes del cuerpo, generalmente en las manos y los pies, y se envía una corriente eléctrica suave a través del cuerpo. La resistencia medida se utiliza para estimar el porcentaje de grasa corporal."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="La medición de pliegues cutáneos es otra técnica utilizada para calcular el IGC. Se utilizan pinzas especiales para medir el grosor de los pliegues cutáneos en diferentes áreas del cuerpo, como el tríceps, el abdomen y el muslo. Estas mediciones se ingresan en ecuaciones específicas que estiman el porcentaje de grasa corporal."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="La densitometría de doble energía (DEXA) es una técnica más avanzada que utiliza rayos X de baja dosis para medir la densidad corporal. A través de estas mediciones, se puede calcular el porcentaje de grasa corporal."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Es importante tener en cuenta que cada método tiene sus limitaciones y puede haber cierto margen de error en los resultados. Además, los resultados pueden variar según la edad, el sexo, la raza y otros factores individuales. Es recomendable consultar a un profesional de la salud para obtener una evaluación precisa del IGC y su significado para la salud y el bienestar personal."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Debido a que la mayoría de los métodos más precisos requieren tecnologías externas especializadas y personal capacitado para manejarlas, hemos optado por la técnica más sencilla y fácil de aplicar para todo el mundo, que es el IMC."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Como bien hemos mencionado antes, esta técnica no es la más precisa, pero servirá como punto de referencia en aquellos objetivos de perder grasa en abdomen, glúteos y otras zonas del cuerpo. En función de los avances del usuario y nuevas mediciones del IMC, el usuario podrá cerciorarse de su progreso hacia ese objetivo marcado."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Además, el IMC te puede servir como un indicador de la salud en la que te encuentras actualmente, ya que en función del porcentaje de grasa corporal que obtengas, puedes saber si estás dentro de los rangos de obesidad o no y otros rangos."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estos rangos varían según varias variables, entre las más importantes están la edad y el sexo, las cuales son determinantes."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="La fórmula para calcular el índice de masa corporal (IMC) es la siguiente:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IMC = peso (en kilogramos) / (altura (en metros))^2"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El peso se debe proporcionar en kilogramos y la altura en metros. Primero se eleva la altura al cuadrado y luego se divide el peso por este valor. El resultado obtenido es el IMC."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Por ejemplo, si una persona pesa 70 kilogramos y su altura es de 1.75 metros, el cálculo sería:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IMC = 70 / (1.75^2) = 22.86"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A continuación, proporcionaré un ejemplo de una ecuación comúnmente utilizada para estimar el porcentaje de grasa corporal en hombres y mujeres. Sin embargo, debes tener en cuenta que esto es solo una estimación y los resultados pueden no ser precisos en todos los casos."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Para hombres:"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Porcentaje de grasa corporal = (1.20 × IMC) + (0.23 × edad) - 16.2"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Para mujeres:"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Porcentaje de grasa corporal = (1.20 × IMC) + (0.23 × edad) - 5.4"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Utilizando el ejemplo proporcionado (IMC = 22.86), si asumimos una edad de 30 años, los cálculos serían los siguientes:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Para hombres:"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Porcentaje de grasa corporal = (1.20 × 22.86) + (0.23 × 30) - 16.2 = 27.29%"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Para mujeres:"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Porcentaje de grasa corporal = (1.20 × 22.86) + (0.23 × 30) - 5.4 = 24.69%"
+            android:textSize="16sp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tablasgc" />
+
+        <Button
+            android:id="@+id/buttonVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mintJelly_300"
+            android:text="Volver" />
+
+    </LinearLayout>
+</ScrollView>

@@ -24,8 +24,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mygoals.InformacionActivity;
 import com.mygoals.R;
 import com.mygoals.ui.main.PageViewModel;
+
+import android.content.Intent;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 
 
 /**
@@ -34,7 +40,12 @@ import com.mygoals.ui.main.PageViewModel;
  * create an instance of this fragment.
  */
 public class Page4 extends Fragment {
-
+     // variable de IMC y %GC
+     private EditText editTextPeso, editTextAltura, editTextEdad;
+    private RadioGroup radioGroupSexo;
+    private TextView textViewIMC, textViewGC;
+    private Button buttonCalcular;
+    private Button buttonInformacion;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,6 +90,9 @@ public class Page4 extends Fragment {
         }
         mViewModel = new ViewModelProvider(requireActivity()).get(PageViewModel.class);
 
+
+
+
     }
 
     @Override
@@ -89,7 +103,61 @@ public class Page4 extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_page4, container, false);
+        //variables IMC y %GC
+        editTextPeso = view.findViewById(R.id.editTextPeso);
+        editTextAltura = view.findViewById(R.id.editTextAltura);
+        editTextEdad = view.findViewById(R.id.editTextEdad);
+        radioGroupSexo = view.findViewById(R.id.radioGroupSexo);
+        textViewIMC = view.findViewById(R.id.textViewIMC);
+        textViewGC = view.findViewById(R.id.textViewGC);
+        buttonCalcular = view.findViewById(R.id.buttonCalcular);
+        buttonInformacion = view.findViewById(R.id.buttonInformacion);
+
+        buttonInformacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirInformacion();
+            }
+        });
+
+        buttonCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calcularIMCyGC();
+            }
+        });
 
         return view;
+    }
+
+    private void calcularIMCyGC() {
+        // Obtener los valores ingresados por el usuario
+        double peso = Double.parseDouble(editTextPeso.getText().toString());
+        double altura = Double.parseDouble(editTextAltura.getText().toString());
+        int edad = Integer.parseInt(editTextEdad.getText().toString());
+
+        // Calcular el IMC
+        double imc = peso / (altura * altura);
+
+        // Obtener el RadioButton seleccionado
+        int radioButtonId = radioGroupSexo.getCheckedRadioButtonId();
+        RadioButton radioButton = getView().findViewById(radioButtonId);
+
+        // Calcular el porcentaje de grasa corporal según el sexo
+        double porcentajeGC;
+        if (radioButton.getText().toString().equals("Hombre")) {
+            porcentajeGC = (1.20 * imc) + (0.23 * edad) - 16.2;
+        } else {
+            porcentajeGC = (1.20 * imc) + (0.23 * edad) - 5.4;
+        }
+
+        // Mostrar los resultados en los TextView correspondientes
+        textViewIMC.setText(String.format("IMC: %.2f", imc));
+        textViewGC.setText(String.format("%%GC: %.2f", porcentajeGC));
+    }
+
+    private void abrirInformacion() {
+        Intent intent = new Intent(getActivity(), InformacionActivity.class);
+        startActivity(intent);
     }
 }

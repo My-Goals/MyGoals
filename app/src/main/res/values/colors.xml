@@ -21,4 +21,15 @@
     <color name="red_chart">#e6646e</color>
     <color name="gray_chart">#7a7777</color>
 
+    <color name="mintJelly_50">#f6fdf9</color>
+    <color name="mintJelly_100">#d4f7e6</color>
+    <color name="mintJelly_200">#b2f2d2</color>
+    <color name="mintJelly_300">#90ecbe</color>
+    <color name="mintJelly_400">#6ee6aa</color>
+    <color name="mintJelly_500">#4ce197</color>
+    <color name="mintJelly_600">#3cb478</color>
+    <color name="mintJelly_700">#2d875a</color>
+    <color name="mintJelly_800">#1e5a3c</color>
+    <color name="mintJelly_900">#0f2c1e</color>
+
 </resources>
