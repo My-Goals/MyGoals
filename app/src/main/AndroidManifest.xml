@@ -17,6 +17,9 @@
             android:name=".Forgot"
             android:exported="false" />
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".PolicyActivity"
             android:exported="false" >
             <meta-data
