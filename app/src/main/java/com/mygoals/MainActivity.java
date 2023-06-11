@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,6 +39,7 @@ private NavigationView navview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mViewModel = new ViewModelProvider(this).get(PageViewModel.class);
@@ -140,7 +142,7 @@ private NavigationView navview;
             }
         });
     }
-   /* @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_nav,menu);
         return true;
@@ -160,7 +162,7 @@ logOut();
         }
 
         return false;
-    }*/
+    }
 
 
 

@@ -7,7 +7,7 @@
     <item
         android:id="@+id/lamp"
         android:title="@string/lamp"
-        android:icon="@drawable/ic_lamp"
+        android:icon="@drawable/recetas_ic"
         android:contentDescription="none"
         app:showAsAction="always"
 
@@ -17,7 +17,7 @@
     <item
         android:id="@+id/user"
         android:title="@string/user"
-        android:icon="@drawable/ic_user_bar"
+        android:icon="@drawable/calc_ic"
         android:contentDescription="none"
         app:showAsAction="always"
         />
@@ -25,7 +25,7 @@
     <item
         android:id="@+id/data"
         android:title="@string/data"
-        android:icon="@drawable/ic_data"
+        android:icon="@drawable/calendar_ic"
         android:contentDescription="none"
         app:showAsAction="always"
         >
