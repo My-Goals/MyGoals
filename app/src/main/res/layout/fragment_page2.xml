@@ -100,29 +100,35 @@
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total:"
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/textview_grasas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Grasa:" />
+            android:hint="Grasas:"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/textview_proteinas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Proteínas:"
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/textview_carbohidratos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Carbohidratos:"
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/textview_kcal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Kcal:"
