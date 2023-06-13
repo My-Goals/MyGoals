@@ -1,12 +1,16 @@
 package com.mygoals;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -49,11 +53,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         private TextView txtTitle;
         private TextView txtDescription;
         private TextView txtLink;
+        private ImageView picture;
         public NewsViewHolder(View itemView) {
             super(itemView);
             this.txtTitle = itemView.findViewById(R.id.title);
             this.txtDescription = itemView.findViewById(R.id.description);
             this.txtLink = itemView.findViewById(R.id.link);
+            this.picture = (ImageView) itemView.findViewById(R.id.picture);
 
         }
 
@@ -61,6 +67,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             txtTitle.setText(news.getTitle());
             txtDescription.setText(news.getDescription());
             txtLink.setText(news.getLink());
+            Glide.with(itemView.getContext()).load(news.getPicture()).into(picture);
+
         }
 
 

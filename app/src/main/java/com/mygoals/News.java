@@ -14,6 +14,17 @@ private String title;
 private String description;
     @SerializedName("strSource")
 private String link;
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    @SerializedName("strMealThumb")
+    private String picture;
     public String getTitle() {
         return title;
     }
@@ -38,9 +49,10 @@ private String link;
         this.link = link;
     }
 
-    public News(String title, String description, String link) {
+    public News(String title, String description, String link,String picture) {
         this.title = title;
         this.description = description;
         this.link = link;
+        this.picture=picture;
     }
 }

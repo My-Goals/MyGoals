@@ -31,28 +31,21 @@ public static void getData( Page1 page1) {
 
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.i("News", "Response: " + response.toString());
+                    //Log.i("News", "Response: " + response.toString());
                     Gson gson = new Gson();
 
                    NewsReponse news = gson.fromJson(response.toString(), NewsReponse.class);
-                    Log.i("News",news.getNews().toString());
+                    //Log.i("News",news.getNews().toString());
                     page1.addNews(news.getNews().get(0));
-                    Log.i("News",news.getNews().get(0).toString());
+                    //Log.i("News",news.getNews().get(0).toString());
                 }
             }, new Response.ErrorListener() {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.i("News", "Response: " +error.toString());
+                   // Log.i("News", "Response: " +error.toString());
                 }
             }){
-        @Override
-        public Map<String, String> getHeaders() throws AuthFailureError {
-            Map<String, String> headers = new HashMap<>();
-            headers.put("X-RapidAPI-Key", "6b5c22851bmshb38dd2d2122f7e6p17bfc2jsn6fcf892671ff");
-            headers.put("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com");
-            return headers;
-        }
     };
 
     // Access the RequestQueue through your singleton class.
