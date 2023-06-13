@@ -150,18 +150,12 @@ private NavigationView navview;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.nav_profile:
-                Intent intentCarrito = new Intent(this,ProfileActivity.class);
-                startActivity(intentCarrito);
-                intentCarrito.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                break;
             case R.id.nav_exit:
-logOut();
+                logOut();
             default:
                 return  super.onOptionsItemSelected(item);
         }
 
-        return false;
     }
 
 

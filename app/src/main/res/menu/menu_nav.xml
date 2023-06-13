@@ -2,13 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_user"
-            android:title="@string/editProfile" />
-        <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_logout"
-            android:title="Exit" />
+            android:title="Log Out" />
 
     </group>
 </menu>
