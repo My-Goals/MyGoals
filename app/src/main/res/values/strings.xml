@@ -3,10 +3,10 @@
     <string name="txt_tab1">My Genie</string>
     <string name="txt_tab2">My Data</string>
     <string name="txt_tab3">Form</string>
-    <string name="lamp">My Genie</string>
-    <string name="user">Profile</string>
-    <string name="data">Data</string>
-    <string name="form">Form</string>
+    <string name="lamp">Feed</string>
+    <string name="user">Calculator</string>
+    <string name="data">Calendar</string>
+    <string name="form">IMC</string>
     <string name="save">Save</string>
     <string name="password">password</string>
     <string name="forgotPassword">We will send you an email to this adress</string>
