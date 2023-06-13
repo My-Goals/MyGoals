@@ -2,6 +2,8 @@ package com.mygoals.fragments;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mygoals.Alimento;
+import com.mygoals.AlimentosAdapter;
+import com.mygoals.HistorialMedicionesAdapter;
 import com.mygoals.Seleccion;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
@@ -335,6 +337,7 @@ public class Page2 extends Fragment{
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                registro=new ArrayList<>();
                 // Calcula los totales de grasas, proteínas, carbohidratos y kcal
                 double totalGrasas = 0;
                 double totalProteinas = 0;
@@ -364,6 +367,10 @@ public class Page2 extends Fragment{
                     //introducir los datos en el arrayList de alimentos
                     Alimento alimento= new Alimento(carbohidratosAlimento,kcalAlimento,grasasAlimento,nombreAlimento,proteinasAlimento);
                     registro.add(alimento);
+
+                    RecyclerView recyclerView = getView().findViewById(R.id.recyclerViewHistorial);
+                    AlimentosAdapter adapter = new AlimentosAdapter(registro);
+                    recyclerView.setAdapter(adapter);
 
                     totalGrasas += grasasAlimento;
                     totalProteinas += proteinasAlimento;

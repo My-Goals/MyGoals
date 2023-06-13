@@ -14,7 +14,7 @@ public class AlimentosAdapter extends RecyclerView.Adapter<AlimentosAdapter.Alim
     private Context context;
     private List<Alimento> alimentos;
 
-    public AlimentosAdapter(Context context, List<Alimento> alimentos) {
+    public AlimentosAdapter(List<Alimento> alimentos) {
         this.context = context;
         this.alimentos = alimentos;
     }
