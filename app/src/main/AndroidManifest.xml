@@ -53,6 +53,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".InformacionActivity"
+            android:label="Información">
+
+            <!-- Actividad de información -->
+
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="true" >

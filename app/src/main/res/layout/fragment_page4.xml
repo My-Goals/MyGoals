@@ -1,10 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.Page4"
-    android:background="@android:color/holo_orange_dark">
+    android:layout_height="match_parent">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/editTextPeso"
+            android:layout_width="360dp"
+            android:layout_height="61dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Peso"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextAltura"
+
+            android:layout_width="360dp"
+            android:layout_height="61dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Altura"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editTextEdad"
+            android:layout_width="360dp"
+            android:layout_height="61dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Edad"
+            android:inputType="number" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupSexo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_marginBottom="8dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonHombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Hombre" />
+
+            <RadioButton
+                android:id="@+id/radioButtonMujer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mujer" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textViewIMC"
+            android:layout_width="360dp"
+            android:layout_height="37dp"
+            android:layout_marginBottom="8dp"
+            android:text="IMC" />
+
+        <TextView
+            android:id="@+id/textViewGC"
+            android:layout_width="360dp"
+            android:layout_height="37dp"
+            android:layout_marginBottom="8dp"
+            android:text="%GC" />
+
+        <Button
+            android:id="@+id/buttonCalcular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calcular"
+            android:background="@color/mintJelly_700"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:background="@color/mintJelly_700"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonHistorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Historial"
+            android:background="@color/mintJelly_700"
+            android:layout_marginBottom="8dp" />
+        <Button
+            android:id="@+id/buttonInformacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mintJelly_300"
+            android:text="Informacion" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHistorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+
+    </LinearLayout>
+</ScrollView>
