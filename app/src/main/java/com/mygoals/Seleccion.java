@@ -24,6 +24,14 @@ public class Seleccion {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
+
+    @Override
+    public String toString() {
+        return "Seleccion{" +
+                "nombre='" + nombre + '\'' +
+                ", cantidad='" + cantidad + '\'' +
+                '}';
+    }
 }
 
 

@@ -10,18 +10,18 @@
         android:id="@+id/textViewFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fecha" />
+        android:hint="Fecha" />
 
     <TextView
         android:id="@+id/textViewIMC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="IMC" />
+        android:hint="IMC" />
 
     <TextView
         android:id="@+id/textViewGC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="%GC" />
+        android:hint="%GC" />
 
 </LinearLayout>

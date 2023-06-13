@@ -1,18 +1,43 @@
 package com.mygoals;
 
 public class Alimento {
-    private String nombre;
-    private int grasas;
-    private int carbohidratos;
-    private int proteinas;
-    private int kcal;
 
-    public Alimento(String nombre, int grasas, int carbohidratos, int proteinas, int kcal) {
-        this.nombre = nombre;
-        this.grasas = grasas;
+    private double carbohidratos;
+    private double energia;
+    private double grasas;
+    private String nombre;
+    private double proteinas;
+
+    public Alimento(double carbohidratos, double energia, double grasas, String nombre, double proteinas) {
         this.carbohidratos = carbohidratos;
+        this.energia = energia;
+        this.grasas = grasas;
+        this.nombre = nombre;
         this.proteinas = proteinas;
-        this.kcal = kcal;
+    }
+
+    public double getCarbohidratos() {
+        return carbohidratos;
+    }
+
+    public void setCarbohidratos(double carbohidratos) {
+        this.carbohidratos = carbohidratos;
+    }
+
+    public double getEnergia() {
+        return energia;
+    }
+
+    public void setEnergia(double energia) {
+        this.energia = energia;
+    }
+
+    public double getGrasas() {
+        return grasas;
+    }
+
+    public void setGrasas(double grasas) {
+        this.grasas = grasas;
     }
 
     public String getNombre() {
@@ -23,46 +48,12 @@ public class Alimento {
         this.nombre = nombre;
     }
 
-    public int getGrasas() {
-        return grasas;
-    }
-
-    public void setGrasas(int grasas) {
-        this.grasas = grasas;
-    }
-
-    public int getCarbohidratos() {
-        return carbohidratos;
-    }
-
-    public void setCarbohidratos(int carbohidratos) {
-        this.carbohidratos = carbohidratos;
-    }
-
-    public int getProteinas() {
+    public double getProteinas() {
         return proteinas;
     }
 
-    public void setProteinas(int proteinas) {
+    public void setProteinas(double proteinas) {
         this.proteinas = proteinas;
     }
-
-    public int getKcal() {
-        return kcal;
-    }
-
-    public void setKcal(int kcal) {
-        this.kcal = kcal;
-    }
-
-    @Override
-    public String toString() {
-        return "Alimento{" +
-                "nombre='" + nombre + '\'' +
-                ", grasas=" + grasas +
-                ", carbohidratos=" + carbohidratos +
-                ", proteinas=" + proteinas +
-                ", kcal=" + kcal +
-                '}';
-    }
 }
+

@@ -7,12 +7,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
         android:padding="16dp">
 
         <EditText
             android:id="@+id/editTextPeso"
-            android:layout_width="381dp"
+            android:layout_width="360dp"
             android:layout_height="61dp"
             android:layout_marginBottom="8dp"
             android:hint="Peso"
@@ -21,7 +24,7 @@
         <EditText
             android:id="@+id/editTextAltura"
 
-            android:layout_width="381dp"
+            android:layout_width="360dp"
             android:layout_height="61dp"
             android:layout_marginBottom="8dp"
             android:hint="Altura"
@@ -29,7 +32,7 @@
 
         <EditText
             android:id="@+id/editTextEdad"
-            android:layout_width="381dp"
+            android:layout_width="360dp"
             android:layout_height="61dp"
             android:layout_marginBottom="8dp"
             android:hint="Edad"
@@ -60,14 +63,14 @@
 
         <TextView
             android:id="@+id/textViewIMC"
-            android:layout_width="375dp"
+            android:layout_width="360dp"
             android:layout_height="37dp"
             android:layout_marginBottom="8dp"
             android:text="IMC" />
 
         <TextView
             android:id="@+id/textViewGC"
-            android:layout_width="375dp"
+            android:layout_width="360dp"
             android:layout_height="37dp"
             android:layout_marginBottom="8dp"
             android:text="%GC" />

@@ -1,5 +1,9 @@
 package com.mygoals.fragments;
 
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.mygoals.HistorialMedicionesAdapter;
+import com.mygoals.Medicion;
+
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +36,12 @@ import com.mygoals.ui.main.PageViewModel;
 import android.content.Intent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+//para utilizar fecha
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 
 
@@ -46,6 +57,13 @@ public class Page4 extends Fragment {
     private TextView textViewIMC, textViewGC;
     private Button buttonCalcular;
     private Button buttonInformacion;
+    private Button buttonGuardar;
+    private Button buttonHistorial;
+
+    //para manejar firebase
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,6 +108,9 @@ public class Page4 extends Fragment {
         }
         mViewModel = new ViewModelProvider(requireActivity()).get(PageViewModel.class);
 
+        //firebase
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
 
 
 
@@ -112,6 +133,8 @@ public class Page4 extends Fragment {
         textViewGC = view.findViewById(R.id.textViewGC);
         buttonCalcular = view.findViewById(R.id.buttonCalcular);
         buttonInformacion = view.findViewById(R.id.buttonInformacion);
+        buttonGuardar= view.findViewById(R.id.buttonGuardar);
+        buttonHistorial= view.findViewById(R.id.buttonHistorial);
 
         buttonInformacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +147,20 @@ public class Page4 extends Fragment {
             @Override
             public void onClick(View v) {
                 calcularIMCyGC();
+            }
+        });
+
+        buttonGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guardarMedicion();
+            }
+        });
+
+        buttonHistorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarHistorial();
             }
         });
 
@@ -159,5 +196,87 @@ public class Page4 extends Fragment {
     private void abrirInformacion() {
         Intent intent = new Intent(getActivity(), InformacionActivity.class);
         startActivity(intent);
+    }
+
+    //metodo guardar
+    private void guardarMedicion() {
+        // Obtener los valores ingresados por el usuario
+        double peso = Double.parseDouble(editTextPeso.getText().toString());
+        double altura = Double.parseDouble(editTextAltura.getText().toString());
+        int edad = Integer.parseInt(editTextEdad.getText().toString());
+
+        // Calcular el IMC
+        double imc = peso / (altura * altura);
+
+        // Obtener el RadioButton seleccionado
+        int radioButtonId = radioGroupSexo.getCheckedRadioButtonId();
+        RadioButton radioButton = getView().findViewById(radioButtonId);
+
+        // Calcular el porcentaje de grasa corporal según el sexo
+        double porcentajeGC;
+        if (radioButton.getText().toString().equals("Hombre")) {
+            porcentajeGC = (1.20 * imc) + (0.23 * edad) - 16.2;
+        } else {
+            porcentajeGC = (1.20 * imc) + (0.23 * edad) - 5.4;
+        }
+
+        // Obtener la fecha actual en formato string
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String fechaActual = dateFormat.format(new Date());
+
+        // Obtener el ID de usuario actual
+        String userId = auth.getCurrentUser().getUid();
+        String valGC=String.format("%%GC: %.2f", porcentajeGC);
+        String valIMC=String.format("IMC: %.2f", imc);
+
+        // Crear una nueva instancia de la clase Medicion con los valores calculados
+        Medicion medicion = new Medicion(fechaActual,valGC,userId, valIMC);
+
+        // Guardar la medicion en la colección "historialMediciones" de Firebase Firestore
+        db.collection("historialMediciones")
+                .add(medicion)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getActivity(), "Medición guardada exitosamente", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getActivity(), "Error al guardar la medición", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error al guardar la medición", e);
+                });
+    }
+//
+    private void mostrarHistorial() {
+        // Obtener el ID de usuario actual
+        String userId = auth.getCurrentUser().getUid();
+
+        // Consultar la colección "historialMediciones" de Firebase Firestore
+        db.collection("historialMediciones")
+                .whereEqualTo("idUsu", userId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    // Crear una lista para almacenar los registros de mediciones
+                    List<Medicion> mediciones = new ArrayList<>();
+
+                    // Recorrer los documentos obtenidos de la consulta
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        // Obtener los datos del documento y crear una instancia de Medicion
+                        String fecha = documentSnapshot.getString("fecha");
+                        String porcentajeGC = documentSnapshot.getString("gc");
+                        String idUsuario = documentSnapshot.getString("idUsu");
+                        String imc = documentSnapshot.getString("imc");
+                        Medicion medicion = new Medicion(fecha, porcentajeGC, idUsuario, imc);
+
+                        // Agregar la instancia a la lista de mediciones
+                        mediciones.add(medicion);
+                    }
+
+                    // Configurar el RecyclerView con los datos de las mediciones
+                    RecyclerView recyclerView = getView().findViewById(R.id.recyclerViewHistorial);
+                    HistorialMedicionesAdapter adapter = new HistorialMedicionesAdapter(mediciones);
+                    recyclerView.setAdapter(adapter);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getActivity(), "Error al obtener el historial de mediciones", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error al obtener el historial de mediciones", e);
+                });
     }
 }

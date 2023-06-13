@@ -1,4 +1,6 @@
 package com.mygoals.fragments;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.mygoals.Alimento;
 import com.mygoals.Seleccion;
 import static android.app.Activity.RESULT_OK;
@@ -82,11 +84,20 @@ public class Page2 extends Fragment{
     private TextView textViewKcal;
 
     //contenidos de los spinner
-    private String[] carnes = {"selecciona alimento","Carne de res", "Pollo", "Cerdo"};
+    private String[] carnes = {"selecciona alimento","Carne de res", "Pollo", "Carne de cerdo","Salmon"};
     private String[] verduras = {"selecciona alimento","Espinaca", "Lechuga", "Brócoli"};
     private String[] frutas = {"selecciona alimento","Manzana", "Plátano", "Naranja"};
     private String[] origenAnimal = {"selecciona alimento","Leche", "Huevo", "Queso"};
     private String[] origenVegetal = {"selecciona alimento","Arroz", "Trigo", "Avena"};
+
+    //variable firebase
+    private FirebaseFirestore db;
+
+    //variables paramanejar datos de la base de datos
+    double grasasAlimento = 0;
+    double proteinasAlimento = 0;
+    double carbohidratosAlimento = 0;
+    double kcalAlimento=0;
 
     private ArrayList<Seleccion> lista;
     private ArrayList<Alimento> registro;
@@ -123,8 +134,12 @@ public class Page2 extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_page2, container, false);
 
+        //variable para utilizar firebase
+        db = FirebaseFirestore.getInstance();
+
         //inicializacin de lista
         lista = new ArrayList<>();
+        registro=new ArrayList<>();
 
         // manejo de variables de la calculadora
         spinnerCarnes = view.findViewById(R.id.spinner_carnes);
@@ -290,7 +305,12 @@ public class Page2 extends Fragment{
 
 
                         // Mostrar mensaje toast de confirmación
-                        Toast.makeText(requireContext(), "Agregado a la lista", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Agregado a la lista" , Toast.LENGTH_SHORT).show();
+
+                        // Mostrar mensaje toast de confirmación
+                        String mensaje = "Agregado a la lista:\n" + lista.toString();
+                        Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show();
+
 
                         // Restablecer los Spinners a la primera posición
                         spinnerCarnes.setSelection(0);
@@ -310,17 +330,95 @@ public class Page2 extends Fragment{
             }
         });
 
+        // funcion de calcular
+
+        btnCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Calcula los totales de grasas, proteínas, carbohidratos y kcal
+                double totalGrasas = 0;
+                double totalProteinas = 0;
+                double totalCarbohidratos = 0;
+                double totalKcal = 0;
+                 grasasAlimento = 0;
+                 proteinasAlimento = 0;
+                 carbohidratosAlimento = 0;
+                 kcalAlimento=0;
+
+                // Recorre el ArrayList lista
+                for (Seleccion seleccion : lista) {
+                    String nombreAlimento = seleccion.getNombre();
+                    //Toast.makeText(requireContext(), nombreAlimento, Toast.LENGTH_SHORT).show();
+                    int cantidad = Integer.parseInt(seleccion.getCantidad());
+                    //Toast.makeText(requireContext(), cantidad, Toast.LENGTH_SHORT).show();
+
+                    // Aquí puedes utilizar el método buscarAlimento(nombreAlimento) para obtener los datos del alimento desde Firebase
+                    buscarAlimento(nombreAlimento);
+
+                    // Realiza los cálculos necesarios y actualiza los totales
+                     grasasAlimento = reglaDeTres(cantidad, grasasAlimento); // Obtén el valor real desde la base de datos
+                     proteinasAlimento = reglaDeTres(cantidad, proteinasAlimento); // Obtén el valor real desde la base de datos
+                     carbohidratosAlimento = reglaDeTres(cantidad, carbohidratosAlimento); // Obtén el valor real desde la base de datos
+                     kcalAlimento = reglaDeTres(cantidad, kcalAlimento); // Utiliza tu método reglaDeTres con los valores reales
+
+                    //introducir los datos en el arrayList de alimentos
+                    Alimento alimento= new Alimento(carbohidratosAlimento,kcalAlimento,grasasAlimento,nombreAlimento,proteinasAlimento);
+                    registro.add(alimento);
+
+                    totalGrasas += grasasAlimento;
+                    totalProteinas += proteinasAlimento;
+                    totalCarbohidratos += carbohidratosAlimento;
+                    totalKcal += kcalAlimento;
+                }
+
+                // Actualiza los TextView con los totales calculados
+                textViewGrasas.setText(String.valueOf(totalGrasas));
+                textViewProteinas.setText(String.valueOf(totalProteinas));
+                textViewCarbohidratos.setText(String.valueOf(totalCarbohidratos));
+                textViewKcal.setText(String.valueOf(totalKcal));
+            }
+        });
+
         return view;
 
 
     }
 
 
- public int reglaDeTres(int cant,int val){
-        int valor=0;
+ public double reglaDeTres(int cant,double val){
+        double valor=0;
         valor=(cant*val)/100;
         return valor;
 }
+
+    private void buscarAlimento(String nombre) {
+        db.collection("Alimentos").document(nombre).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                // El documento existe, aquí puedes obtener los datos
+                                //String nombreAlimento = document.getString("nombre");
+                                grasasAlimento = Double.parseDouble(document.getString("grasas"));
+                                //double dato= grasasAlimento;
+                               // Toast.makeText(requireContext(), (int) dato, Toast.LENGTH_SHORT).show();
+                                proteinasAlimento = Double.parseDouble(document.getString("proteinas"));
+                                carbohidratosAlimento = Double.parseDouble(document.getString("carbohidratos"));
+                                kcalAlimento = Double.parseDouble(document.getString("energia"));
+                                // y otros campos que hayas guardado en la filaLog.d("TAG", "Nombre: " + nombreAlimento + ", Tipo: " + tipoAlimento);
+                            } else {
+                                // El documento no existe
+                                Log.d("TAG", "El alimento no fue encontrado.");
+                            }
+                        } else {
+                            // Ocurrió un error al obtener el documento
+                            Log.d("TAG", "Error al obtener el alimento: " + task.getException());
+                        }
+                    }
+                });
+    }
 
 
 }

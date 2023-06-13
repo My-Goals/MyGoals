@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre" />
+
+    <TextView
+        android:id="@+id/textViewGrasas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Grasas:" />
+
+    <TextView
+        android:id="@+id/textViewProteinas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Proteinas:" />
+    <TextView
+        android:id="@+id/textViewCarbohidratos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Carbohidratos:" />
+    <TextView
+        android:id="@+id/textViewKcal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kcal:" />
+
+</LinearLayout>
