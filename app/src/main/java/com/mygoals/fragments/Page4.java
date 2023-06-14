@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,6 +64,10 @@ public class Page4 extends Fragment {
     //para manejar firebase
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+
+    private ArrayList<Medicion> mediciones;
+    private RecyclerView recyclerView;
+    private HistorialMedicionesAdapter itemAdapter;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -135,6 +140,15 @@ public class Page4 extends Fragment {
         buttonInformacion = view.findViewById(R.id.buttonInformacion);
         buttonGuardar= view.findViewById(R.id.buttonGuardar);
         buttonHistorial= view.findViewById(R.id.buttonHistorial);
+
+        // Inicializa el RecyclerView y su adaptador
+        recyclerView = view.findViewById(R.id.recyclerViewHistorial);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mediciones = new ArrayList<>();
+        itemAdapter = new HistorialMedicionesAdapter(mediciones);
+        recyclerView.setAdapter(itemAdapter);
+
+
 
         buttonInformacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,7 +268,7 @@ public class Page4 extends Fragment {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     // Crear una lista para almacenar los registros de mediciones
-                    List<Medicion> mediciones = new ArrayList<>();
+
 
                     // Recorrer los documentos obtenidos de la consulta
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
@@ -268,11 +282,14 @@ public class Page4 extends Fragment {
                         // Agregar la instancia a la lista de mediciones
                         mediciones.add(medicion);
                     }
-
+/*
                     // Configurar el RecyclerView con los datos de las mediciones
                     RecyclerView recyclerView = getView().findViewById(R.id.recyclerViewHistorial);
                     HistorialMedicionesAdapter adapter = new HistorialMedicionesAdapter(mediciones);
                     recyclerView.setAdapter(adapter);
+                    */
+
+
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getActivity(), "Error al obtener el historial de mediciones", Toast.LENGTH_SHORT).show();
